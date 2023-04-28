@@ -1,0 +1,25 @@
+{
+    "name": "bogachevskes/storage-slot-loader",
+    "description": "Распределитель объемов складского хранения",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+      {
+        "name": "Andrey Bogachevskiy",
+        "email": "bogachevskes@yandex.ru"
+      }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ramsey/uuid": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2"
+    }
+}
