@@ -4,6 +4,8 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
+define('PROJECT_ROOT', __DIR__ . '/../');
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use app\{
@@ -28,6 +30,8 @@ use app\observers\{
     ObserveProcessTruckDone,
     ObserveProcessTruckFail,
     ObserveProcessTruckStart,
+    ObserveOutputCollection,
+    ObserveOutputCollected,
 };
 
 use app\components\EventDispatcher;
@@ -40,8 +44,10 @@ Warehouse::loadSlotsOnce([
 
 $eventDispatcher = new EventDispatcher;
 
+$eventDispatcher->attach(Event::GATEWAY_START, new ObserveOutputCollection);
 $eventDispatcher->attach(Event::GATEWAY_START, new ObserveGatewayStart);
 $eventDispatcher->attach(Event::GATEWAY_DONE, new ObserveGatewayEnd);
+$eventDispatcher->attach(Event::GATEWAY_DONE, new ObserveOutputCollected);
 $eventDispatcher->attach(Event::PROCESS_TRUCK_START, new ObserveProcessTruckStart);
 $eventDispatcher->attach(Event::PROCESS_TRUCK_DONE, new ObserveProcessTruckDone);
 $eventDispatcher->attach(Event::PROCESS_TRUCK_FAIL, new ObserveProcessTruckFail);

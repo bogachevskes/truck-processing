@@ -10,7 +10,7 @@ class EventDispatcher
     
     public function attach(Event $event, ObserverInterface $observer): void
     {
-        $this->eventObservers[$event->name] = $observer;
+        $this->eventObservers[$event->name][] = $observer;
     }
 
     public function detach(Event $event): void
@@ -28,6 +28,8 @@ class EventDispatcher
             return;
         }
 
-        $this->eventObservers[$event->name]->observe($message);
+        foreach ($this->eventObservers[$event->name] as $event) {
+            $event->observe($message);
+        }
     }
 }
