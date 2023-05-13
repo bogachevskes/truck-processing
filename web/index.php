@@ -52,9 +52,9 @@ $eventDispatcher->attach(Event::PROCESS_TRUCK_START, new ObserveProcessTruckStar
 $eventDispatcher->attach(Event::PROCESS_TRUCK_DONE, new ObserveProcessTruckDone);
 $eventDispatcher->attach(Event::PROCESS_TRUCK_FAIL, new ObserveProcessTruckFail);
 
-$model = new DTO;
+$trucks = (new TrucksFactory(ProductTypes::cases()))->createTrucks(rand(9, 15));
 
-$model->trucks = (new TrucksFactory(ProductTypes::cases()))->createTrucks(rand(9, 15));
+$model = new DTO($trucks);
 
 $handler = new SlotsLoadHandler($eventDispatcher);
 

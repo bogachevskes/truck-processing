@@ -4,5 +4,5 @@ namespace app;
 
 class DTO
 {
-    public array $trucks = [];
+    public function __construct(public readonly array $trucks) { }
 }

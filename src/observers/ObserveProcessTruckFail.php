@@ -11,10 +11,8 @@ class ObserveProcessTruckFail implements ObserverInterface
 {
     public function observe(Message $message): void
     {
-        $data = $message->getMessage();
-        
-        echo 'Ошибка при разгрузке грузовика ID: ' . $data['item']->id . '<br>';
-        echo 'Причина: ' . $data['error']->getMessage() . '<br>';
+        echo 'Ошибка при разгрузке грузовика ID: ' . $message->message['item']->id . '<br>';
+        echo 'Причина: ' . $message->message['error']->getMessage() . '<br>';
         echo '<br>';
     }
 }

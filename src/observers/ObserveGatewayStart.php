@@ -13,8 +13,6 @@ class ObserveGatewayStart implements ObserverInterface
 {
     public function observe(Message $message): void
     {
-        $data = $message->getMessage();
-
         echo 'Доступен склад.<br>Слоты размещения склада:<br>';
         echo '<br>';
 
@@ -26,7 +24,7 @@ class ObserveGatewayStart implements ObserverInterface
 
         echo '<br>';
 
-        $trucks = $data['item']->trucks;
+        $trucks = $message->message['item']->trucks;
         
         echo 'Запуск обработки грузовиков.<br>Всего грузовиков: ' . count($trucks) . '<br>';
         echo '<br>';

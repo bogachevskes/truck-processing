@@ -17,9 +17,9 @@ class CheesePowderUnloadStrategy implements StrategyInterface
 
     public function unload(Truck $item): void
     {
-        $storage = Warehouse::getInstance();
-
         $capacity = $item->capacity + ($item->capacity / 25) * 4;
+        
+        $storage = Warehouse::getInstance();
 
         if ($storage->getSlotFreeSpace($item->type) < $capacity) {
             throw new \LogicException('Отсутствует необходимый свободный объем');

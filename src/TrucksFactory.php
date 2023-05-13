@@ -6,7 +6,7 @@ use Ramsey\Uuid\Uuid;
 
 class TrucksFactory
 {
-    public function __construct(private array $productTypes) { }
+    public function __construct(private readonly array $productTypes) { }
 
     public function createTrucks(int $trucksCount): array
     {

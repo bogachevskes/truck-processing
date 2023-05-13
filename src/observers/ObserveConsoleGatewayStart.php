@@ -13,8 +13,6 @@ class ObserveConsoleGatewayStart implements ObserverInterface
 {
     public function observe(Message $message): void
     {
-        $data = $message->getMessage();
-
         echo "\033[0;32mДоступен склад." . PHP_EOL . "Слоты размещения склада:\033[0m" . PHP_EOL;
 
         echo PHP_EOL;
@@ -27,7 +25,7 @@ class ObserveConsoleGatewayStart implements ObserverInterface
 
         echo PHP_EOL;
 
-        $trucks = $data['item']->trucks;
+        $trucks = $message->message['item']->trucks;
         
         echo "\033[0;32mЗапуск обработки грузовиков." . PHP_EOL . 'Всего грузовиков: ' . count($trucks) . "\033[0m" . PHP_EOL;
         echo PHP_EOL;

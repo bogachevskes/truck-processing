@@ -11,9 +11,7 @@ class ObserveProcessTruckStart implements ObserverInterface
 {
     public function observe(Message $message): void
     {
-        $data = $message->getMessage();
-        
-        echo 'Попытка разгрузки грузовика: ' . $data['item']->id . '<br>';
-        echo 'Груз ' . $data['item']->type->value . ' в объеме ' . $data['item']->capacity  . ' кг.<br>';
+        echo 'Попытка разгрузки грузовика: ' . $message->message['item']->id . '<br>';
+        echo 'Груз ' . $message->message['item']->type->value . ' в объеме ' . $message->message['item']->capacity  . ' кг.<br>';
     }
 }

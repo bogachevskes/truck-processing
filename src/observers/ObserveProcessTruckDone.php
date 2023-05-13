@@ -11,10 +11,8 @@ class ObserveProcessTruckDone implements ObserverInterface
 {
     public function observe(Message $message): void
     {
-        $data = $message->getMessage();
-        
-        echo 'Выполнена разгрузка грузовика: ' . $data['item']->id . '<br>';
-        echo 'Доставлен груз ' . $data['item']->type->value . ' в объеме ' . $data['item']->capacity  . ' кг.<br>';
+        echo 'Выполнена разгрузка грузовика: ' . $message->message['item']->id . '<br>';
+        echo 'Доставлен груз ' . $message->message['item']->type->value . ' в объеме ' . $message->message['item']->capacity  . ' кг.<br>';
         echo '<br>';
     }
 }
